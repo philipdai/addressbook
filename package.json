@@ -21,7 +21,9 @@
     "express": "^4.13.3",
     "gulp": "^3.9.0",
     "gulp-live-server": "0.0.29",
+    "istanbul": "^0.4.0",
     "karma": "^0.13.11",
+    "karma-coverage": "^0.5.2",
     "karma-mocha": "^0.2.0",
     "mocha": "^2.3.3"
   },
