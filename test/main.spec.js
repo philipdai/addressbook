@@ -41,25 +41,42 @@ describe("the contact controller", function() {
 });
 
 describe("the proper filter",function(){
-		beforeEach(function(){
-			module("AddressBook");
-			inject(function($injector){
-				proper = $injector.get("$filter")("proper");
-			});
-		})
-
-		it ("should proper case a string",function(){
-			expect(proper("ned stark")).to.equal("Ned Stark");
-			expect(proper("cersei lannister")).to.equal("Cersei Lannister");
+	beforeEach(function(){
+		module("AddressBook");
+		inject(function($injector){
+			proper = $injector.get("$filter")("proper");
 		});
-
-		it ("should take a number and return that as a string",function(){
-			expect(proper(42)).to.equal("42");
-		})
-
-		it ("should throw an error on an incompatible type",function(){
-			assert.throws(function(){
-				proper(undefined)
-			});
-		})
 	})
+
+	it ("should proper case a string",function(){
+		expect(proper("ned stark")).to.equal("Ned Stark");
+		expect(proper("cersei lannister")).to.equal("Cersei Lannister");
+	});
+
+	it ("should take a number and return that as a string",function(){
+		expect(proper(42)).to.equal("42");
+	})
+
+	it ("should throw an error on an incompatible type",function(){
+		assert.throws(function(){
+			proper(undefined)
+		});
+	})
+});
+
+describe("avatar", function() {
+	beforeEach(function() {
+		module("AddressBook");
+	});
+	
+	it("should display the capitalized first letter of name", function() {
+		inject(function($rootScope, $compile) {
+			$rootScope.contact = {name: 'jon arryn'};
+			var element = $compile('<avatar name=contact.name/>')($rootScope);
+			$rootScope.$digest();
+			var dirText = element.text();
+			expect(dirText).to.equal("J");
+		});
+	});
+});
+
