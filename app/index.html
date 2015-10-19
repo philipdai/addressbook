@@ -5,5 +5,10 @@
 	<h1>
 		Hello world! I want to stay here.
 	</h1>
+	<div ng-controller="ContactController">
+		<div ng-repeat="contact in contacts">
+			{{contact.name}}
+		</div>
+	</div>
 	<script src="main.js"></script>
 </body>
